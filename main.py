@@ -26,7 +26,8 @@ def initialization():
     temp = pathlib.PosixPath
     pathlib.PosixPath = pathlib.WindowsPath
 
-
+    if "DATA" not in os.listdir():
+        os.mkdir("DATA")
     list_files = os.listdir("DATA")
     if len(list_files):
         last_file = list_files[len(list_files) - 1]
@@ -42,7 +43,10 @@ def initialization():
         f.write("'angry', 'calm', 'fearful', 'happy', 'neutral', 'sad', 'surprised'")
         f.write('\n')
 
-
+    if 'data_spec' not in os.listdir("APP/voice/record_voice/"):
+        os.mkdir(os.path.join("APP/voice/record_voice/", "data_spec"))
+    if 'data_wav' not in os.listdir("APP/voice/record_voice/"):
+        os.mkdir(os.path.join("APP/voice/record_voice/", "data_wav"))
     logging.info('Deleting old files start')
     dir_path = "APP/voice/record_voice/data_wav/"
     for file_name in os.listdir(dir_path):
